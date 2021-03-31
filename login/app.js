@@ -1,34 +1,45 @@
-const http = require('http');
-const app = http.createServer((req,res)=>{
-    if(req.url==='/'){
-        res.writeHead(200,{"Content-Type": "text/html; charset=utf-8"});
-        res.end("Hi Root  하이 ");
-    }else if(req.url === '/login'){
-        res.writeHead(200);
-        res.end("Hi Login");
-    }
+
+const express = require('express');
+
+const app = express();
+
+
+app.get("/",function(req,res){
+    // function
+    res.send(`
+    <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <h2>This is Main</h2>
+        </body>
+    </html>
+    `);
 });
 
-app.listen(3001,()=>{
-    console.log('htttp로 생성')
+app.get("/login",(req,res)=>{
+    res.send(`
+    <!DOCTYPE html>
+        <html lang="ko">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <input type="text" placeholder="ID"><br>
+            <input type="text" placeholder="PW"><br>
+            <button>Login</button>
+        </body>
+    </html>
+    `);
 });
 
-
-// const express = require('express');
-
-// const app = express();
-
-
-// app.get("/",function(req,res){
-//     // function
-//     res.send("This is root!");
-// });
-
-// app.get("/login",(req,res)=>{
-//     res.send("This is Login Form");
-// });
-
-// app.listen(3000,function(){
-//     console.log("서버 가동");
-// });
+app.listen(3000,function(){
+    console.log("서버 가동");
+});
 
