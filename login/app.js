@@ -1,45 +1,20 @@
+"use strict";
 
+//module
 const express = require('express');
-
 const app = express();
 
+const PORT = 3000;
+//routing
+const home = require("./routes/home");
 
-app.get("/",function(req,res){
-    // function
-    res.send(`
-    <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <h2>This is Main</h2>
-        </body>
-    </html>
-    `);
-});
+//app setting
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
-app.get("/login",(req,res)=>{
-    res.send(`
-    <!DOCTYPE html>
-        <html lang="ko">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-        </head>
-        <body>
-            <input type="text" placeholder="ID"><br>
-            <input type="text" placeholder="PW"><br>
-            <button>Login</button>
-        </body>
-    </html>
-    `);
-});
+app.use("/",home); // use -> 미들 웨어를 등록해주는 메서드
 
-app.listen(3000,function(){
+app.listen(PORT, function () {
     console.log("서버 가동");
 });
 
