@@ -14,16 +14,18 @@ loginBtn.addEventListener("click",login);
 function login(){
     const req={
         id:id.value,
-        password:psword.value,
+        psword:psword.value,
     };
     
     fetch("/login",{
-        method:"POST",         //REST API 관련 설정
-        header:{
+        method:"POST",
+        headers:{
             "Content-Type": "application/json",
         },
         body:JSON.stringify(req),
-    });
+    })
+    .then((res)=>res.json())
+    .then((res)=>console.log(res));
 }
 console.log(id);
 console.log("hello");
