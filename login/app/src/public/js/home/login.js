@@ -16,7 +16,14 @@ function login(){
         id:id.value,
         password:psword.value,
     };
-    console.log(req);
+    
+    fetch("/login",{
+        method:"POST",         //REST API 관련 설정
+        header:{
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(req),
+    });
 }
 console.log(id);
 console.log("hello");
