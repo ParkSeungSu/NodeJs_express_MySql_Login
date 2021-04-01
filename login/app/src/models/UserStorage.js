@@ -18,6 +18,19 @@ class UserStorage {
         
         return newUsers;
     }
+    static getUserInfo(id){
+        console.log(id);
+        const users =this.#users;
+        const idx = users.id.indexOf(id);
+        const userKeys= Object.keys(users); //users의 키값들만으로 배열을 만듬
+        const userInfo = userKeys.reduce((newUser,info)=>{
+            newUser[info]=users[info][idx];
+            return newUser;
+        },{});
+
+        console.log(userInfo);
+        return userInfo;
+    }
 }
 
 module.exports = UserStorage;

@@ -1,7 +1,6 @@
 "use strict";
 
-const UserStorage = require('../../models/UserStorage');
-const userStorage = require('../../models/UserStorage');
+const User = require('../../models/User');
 const output = {
     home : (req, res) => {
         res.render("home/index");
@@ -15,25 +14,18 @@ const output = {
 
 const process ={
     login:(req,res)=>{
-        const id=req.body.id,
-        psword=req.body.psword;
-        
-        const users = UserStorage.getUsers("id","psword");
-
-        const response = {};
-        if(users.id.includes(id)){
-            const idx = users.id.indexOf(id);
-            if(users.psword[idx]===psword){
-                response.success =true;
-                return res.json(response);
-            }
-        }
-        response.success=false;
-        response.message="로그인 실패!";
-        return res.json(response);
+        const user = new User(req.body);
+        const response = user.login();
+        console.log(response);
+       
     },
 };
 module.exports = {
     output,
     process,
 };
+
+
+// const user = new User(req.body); 이 유저는 클라이언트 유저의 특성을 가지게 해야함
+// const response = user.login();
+// return res.json(response);
