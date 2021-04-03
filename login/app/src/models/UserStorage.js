@@ -1,5 +1,7 @@
 "use strict";
-const fs = require('fs').promises;
+
+const db = require("../config/db");
+
 
 class UserStorage {
     static #getUserInfo(data, id) {
@@ -28,33 +30,16 @@ class UserStorage {
     }
 
     static getUsers(isAll, ...fields) {
-        return fs
-            .readFile("./src/databases/users.json")
-            .then((data) => {
-                return this.#getUsers(data, isAll, fields);
-            })
-            .catch(console.error);
+       
     }
 
     static getUserInfo(id) {
-        return fs
-            .readFile("./src/databases/users.json")
-            .then((data) => {
-                return this.#getUserInfo(data, id);
-            })
-            .catch(console.error);
-
+        db.query("select * from users", (err,data)=>{
+            console.log(data);
+        });
     }
     static async save(userInfo) {
-        const users = await this.getUsers(true);
-        if (users.id.includes(userInfo.id)) {
-            throw "이미 존재하는 아이디입니다.";
-        }
-        users.id.push(userInfo.id);
-        users.psword.push(userInfo.psword);
-        users.name.push(userInfo.name);
-        fs.writeFile("./src/databases/users.json", JSON.stringify(users));
-        return { success: true };
+       
     }
 }
 
