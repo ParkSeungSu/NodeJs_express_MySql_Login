@@ -16,6 +16,9 @@ function login(){
         id:id.value,
         psword:psword.value,
     };
+    if(!id.value){
+        return alert("아이디를 입력해주세요!");
+    }
     
     fetch("/login",{
         method:"POST",
