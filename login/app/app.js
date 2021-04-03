@@ -3,6 +3,10 @@
 //module
 const express = require('express');
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+dotenv.config();
+// 협업시에는 운영체제마다 환경 변수를 적용하는 방법이 다름
+
 const app = express();
 
 
