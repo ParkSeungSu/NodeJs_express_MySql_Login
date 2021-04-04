@@ -1,0 +1,7 @@
+[0mGET /register [36m304[0m 18.750 ms - -[0m
+[0mGET /register [36m304[0m 5.160 ms - -[0m
+[0mGET /login [36m304[0m 4.960 ms - -[0m
+[0mGET /login [36m304[0m 18.037 ms - -[0m
+[0mPOST /login [32m200[0m 12.804 ms - 62[0m
+[0mPOST /login [32m200[0m 4.956 ms - 62[0m
+[0mGET /login [32m200[0m 16.114 ms - 712[0m
