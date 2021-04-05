@@ -1,5 +1,7 @@
 "use strict";
 
+// const { response } = require("express");
+
 //register function
 
 // 로그인 버튼 클릭시 ID PW 값을 서버로 전송
@@ -41,6 +43,7 @@ function register() {
             if (res.success) {
                 location.href = "/login";
             } else {
+                if(res.err) return alert(res.err);
                 alert(res.message);
             }
         })
